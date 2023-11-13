@@ -1,0 +1,7 @@
+Initail Money            200
+a            100
+b            200
+c            300
+d            400
+e            -500
+Tot:200
