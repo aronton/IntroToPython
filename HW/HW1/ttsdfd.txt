@@ -1,4 +1,5 @@
 Initail Money            2000
 a            2000
 b            3000
-Tot:7000
+c            4000
+Tot:11000

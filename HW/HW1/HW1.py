@@ -10,7 +10,11 @@ def initialize():
     global money 
     global record 
     print("Welcome to PyMoney ! How much money do you have?")
-    money = int(input())
+    try:
+        money = int(input())
+    except ValueError:
+        print("Only integer is valid in initialization\n")
+        initialize()
     record.clear()
     print("Description          Amount\n")
     print("==================== ======\n")
@@ -32,22 +36,86 @@ def view():
     print("tot:%d\n" %money)
 
 
-def add():
+def Add():
     global money 
     global record 
     while True:
         add = input("How much you add ( ex lunch 10, exit to end )\n")
-        if(add == "exit"):
-            break
-        item = add.split(" ",1)[0]
-        add = add.split(" ",1)[1]
-        record.append((item,add))
-        if(add[0] != "-"):
-            money = money + int(add[:])
-        if(add[0] == "-"):
-            money = money - int(add[1:])
+        add = add.split(" ")
+        # print("add:",add)
+        if len(add)==1:
+            if(add[0] == "exit"):
+                break
+            continue
+        elif len(add)==2:
+            item = add[0]
+            moneyAdd = add[1]
+            try:
+                int(moneyAdd[:])
+            except ValueError:
+                print("2nd Input should be integer")
+                Add()
+                
+            # try:
+            #     int(item[:])
+            # except ValueError:
+            #     print("1st Input should be integer")
+            #     Add()
+            # try:
+            #     moneyAdd = add.split(" ",1)[1]
+            #     try:
+            #         int(moneyAdd[:])
+            #     except ValueError:
+            #         print("2nd Input should be integer")
+            #         Add()
+            # except IndexError:
+            #     print("Input should like ex apple 100")
+            #     Add()
+            record.append((item,moneyAdd))
+            if(moneyAdd[0] != "-"):
+                money = money + int(moneyAdd[:])
+            if(moneyAdd[0] == "-"):
+                money = money - int(moneyAdd[1:])
+        else:
+            continue
+        # item = add.split(" ",1)[0]
+        # if(add=="exit"):
+        #     break
+        # else:
+        #     item = add.split(" ",1)[0]
+        #     try:
+        #         moneyAdd = add.split(" ",1)[1]
+        #         try:
+        #             int(moneyAdd[:])
+        #         except ValueError:
+        #             print("2nd Input should be integer")
+        #             Add()
+        #     except IndexError:
+        #         print("Input should like ex apple 100")
+        #         Add()
+        #     record.append((item,moneyAdd))
+        #     if(moneyAdd[0] != "-"):
+        #         money = money + int(moneyAdd[:])
+        #     if(moneyAdd[0] == "-"):
+        #         money = money - int(moneyAdd[1:])
 # def delete(record):
 
+            # add = add.split(" ",1)[1]
+
+            # if(type(add.split(" ",1)[0]) != str):
+            #     print("1st input should be string")
+            #     Add()
+            # if(type(int(add.split(" ",1)[1])) != int):
+            #     print("2st input should be integer")
+            #     Add()
+            # try:
+            # try:
+            #     "a" + int(add.split(" ",1)[0])
+            #     item = add.split(" ",1)[0]
+            # except TypeError:
+            #     print("1st Input should be string")
+            #     Add()
+            # item = add.split(" ",1)[0]
 def delete():
     global record 
     print("choose the number you want to delete, ex 1,2,3")
@@ -62,8 +130,8 @@ def save(name):
     global record 
     file = open("./" + name + ".txt","w")
     for item in record:
-        file.write("%s            %s\n" %(item[0], item[1]))
-    file.write("Tot:%s\n" %(money))
+        file.writelines("%s            %s\n" %(item[0], item[1]))
+    file.writelines("Tot:%s\n" %(money))
     file.close()
     return
 
@@ -98,7 +166,7 @@ while True:
         initialize()
         # initialize(money, record)
     elif(action == "b"):
-        add()
+        Add()
         # add(money, record)
     elif(action == "c"):
         view()
