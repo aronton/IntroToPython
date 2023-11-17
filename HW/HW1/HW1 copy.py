@@ -42,7 +42,6 @@ def Add():
     while True:
         add = input("How much you add ( ex lunch 10, exit to end )\n")
         add = add.split(" ")
-        # print("add:",add)
         if len(add)==1:
             if(add[0] == "exit"):
                 break
@@ -55,22 +54,6 @@ def Add():
             except ValueError:
                 print("2nd Input should be integer")
                 Add()
-                
-            # try:
-            #     int(item[:])
-            # except ValueError:
-            #     print("1st Input should be integer")
-            #     Add()
-            # try:
-            #     moneyAdd = add.split(" ",1)[1]
-            #     try:
-            #         int(moneyAdd[:])
-            #     except ValueError:
-            #         print("2nd Input should be integer")
-            #         Add()
-            # except IndexError:
-            #     print("Input should like ex apple 100")
-            #     Add()
             record.append((item,moneyAdd))
             if(moneyAdd[0] != "-"):
                 money = money + int(moneyAdd[:])
@@ -78,44 +61,7 @@ def Add():
                 money = money - int(moneyAdd[1:])
         else:
             continue
-        # item = add.split(" ",1)[0]
-        # if(add=="exit"):
-        #     break
-        # else:
-        #     item = add.split(" ",1)[0]
-        #     try:
-        #         moneyAdd = add.split(" ",1)[1]
-        #         try:
-        #             int(moneyAdd[:])
-        #         except ValueError:
-        #             print("2nd Input should be integer")
-        #             Add()
-        #     except IndexError:
-        #         print("Input should like ex apple 100")
-        #         Add()
-        #     record.append((item,moneyAdd))
-        #     if(moneyAdd[0] != "-"):
-        #         money = money + int(moneyAdd[:])
-        #     if(moneyAdd[0] == "-"):
-        #         money = money - int(moneyAdd[1:])
-# def delete(record):
 
-            # add = add.split(" ",1)[1]
-
-            # if(type(add.split(" ",1)[0]) != str):
-            #     print("1st input should be string")
-            #     Add()
-            # if(type(int(add.split(" ",1)[1])) != int):
-            #     print("2st input should be integer")
-            #     Add()
-            # try:
-            # try:
-            #     "a" + int(add.split(" ",1)[0])
-            #     item = add.split(" ",1)[0]
-            # except TypeError:
-            #     print("1st Input should be string")
-            #     Add()
-            # item = add.split(" ",1)[0]
 def delete():
     global record 
     print("choose the number you want to delete, ex 1,2,3")
